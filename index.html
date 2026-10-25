@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BISE Multan 1st Year Result 2026</title>
+<style>
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;margin:0;background:#f3f6fa;color:#172033}.wrap{max-width:650px;margin:35px auto;padding:16px}.card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 5px 22px #15223812}h1{font-size:25px;margin:0 0 8px;color:#174a78}p{line-height:1.5;color:#5a6575}.field{width:100%;padding:14px;font-size:18px;border:1px solid #cbd5e1;border-radius:9px;margin:10px 0}button{width:100%;padding:14px;background:#1769aa;color:white;border:0;border-radius:9px;font-size:17px;font-weight:bold}#output{margin-top:20px}.result{padding:16px;border:1px solid #dbe5ef;border-radius:10px;background:#f8fbff}.label{color:#64748b;font-size:13px;margin-top:10px}.value{font-size:20px;font-weight:bold;overflow-wrap:anywhere}.note{font-size:12px;margin-top:24px}
+</style>
+</head>
+<body><main class="wrap"><section class="card">
+<h1>BISE Multan — 1st Year Result 2026</h1>
+<p>اپنا 6 ہندسوں کا رول نمبر درج کریں۔</p>
+<form id="searchForm"><input class="field" id="roll" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" placeholder="مثلاً 700001" aria-label="Roll number" required><button type="submit">رزلٹ چیک کریں</button></form>
+<div id="output" aria-live="polite"></div>
+<p class="note">یہ غیر سرکاری گزیٹ پر مبنی تلاش ہے۔ حتمی تصدیق متعلقہ بورڈ سے کریں۔</p>
+</section></main>
+<script>
+let records=null;
+async function loadData(){if(records)return records;const out=document.getElementById('output');out.textContent='ڈیٹا لوڈ ہو رہا ہے…';try{const r=await fetch('./multan_hssc_part1_2026_results.json');if(!r.ok)throw new Error('HTTP '+r.status);records=await r.json();return records}catch(e){out.textContent='ڈیٹا لوڈ نہیں ہو سکا۔ چیک کریں کہ JSON فائل اسی فولڈر میں اپلوڈ ہے اور اس کا نام درست ہے۔';throw e}}
+document.getElementById('searchForm').addEventListener('submit',async e=>{e.preventDefault();const roll=document.getElementById('roll').value.trim();const out=document.getElementById('output');if(!/^\d{6}$/.test(roll)){out.textContent='براہِ کرم 6 ہندسوں کا رول نمبر درج کریں۔';return}try{const data=await loadData();const found=data.find(x=>String(x.roll_no)===roll);if(!found){out.textContent='اس رول نمبر کا ریکارڈ نہیں ملا۔';return}out.innerHTML='<div class="result"><div class="label">Roll Number</div><div class="value"></div><div class="label">Student Name</div><div class="value name"></div><div class="label">Marks / Result</div><div class="value marks"></div></div>';out.querySelector('.value').textContent=found.roll_no;out.querySelector('.name').textContent=found.name||'دستیاب نہیں';out.querySelector('.marks').textContent=found.result||'دستیاب نہیں'}catch(e){console.error(e)}});
+</script></body></html>
